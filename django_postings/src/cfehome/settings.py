@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'cfehome.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sample_database',
         'USER': 'sample_user',
         'PASSWORD': 'sample_password',

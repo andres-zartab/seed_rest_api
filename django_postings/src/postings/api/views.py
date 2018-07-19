@@ -1,5 +1,6 @@
 from django.db.models import Q
 from rest_framework import generics, mixins
+from rest_framework.permissions import IsAuthenticated
 
 from postings.models import BlogPost
 from .permissions import IsOwnerOrReadOnly
@@ -8,9 +9,11 @@ from .serializers import BlogPostSerializer
 class BlogPostApiView(generics.ListAPIView, mixins.CreateModelMixin):
     lookup_field = 'pk'#NOTE: this is the default forthe rest_framework. This is the pk in the urls.py regexp
     serializer_class = BlogPostSerializer
-    #permission_classes = [] NOTE:Here I can customize permissions as desired
+    permission_classes = [IsAuthenticated] #NOTE:Here I can customize permissions as desired
     
     def get_queryset(self):
+        print(self.request.auth)
+        print(self.request.user)
         qs = BlogPost.objects.all()
         query = self.request.GET.get('q')
         if query is not None:

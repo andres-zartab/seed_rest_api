@@ -29,10 +29,12 @@ class SeedSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         return object.get_api_url(request=request)
 
-    def validate_title(self, value):
-        qs = BlogPost.objects.filter(title__iexact=value)
-        if self.instance:
-            qs = qs.exclude(pk=self.instance.pk)
-        if qs.exists():
-            raise serializers.ValidationError('This title has already been used')
+    def validate_gps_lat(self, value):
+        if value < 4:
+            raise serializers.ValidationError('This latitude is out of bounds')
+        return value
+
+    def validate_gps_lon(self, value):
+        if value > -50:
+            raise serializers.ValidationError('This longitutde is out of bounds')
         return value

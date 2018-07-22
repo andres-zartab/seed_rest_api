@@ -19,12 +19,12 @@ class Seed(models.Model):
     post        = models.ManyToManyField(BlogPost)
 
     def __str__(self):
-        return str(self.slug)
+        return str(self.name)
 
     @property#NOTE: I do this because permissions.py needs a owner attribute
     def owner(self):
         return self.user
 
-    # def get_api_url(self, request=None):
-    #     #NOTE:Using non rf reverse gives me '/api/postings/pk' but if I want to full url i have to use the rf reverse
-    #     return api_reverse('api-postings:post-rud', kwargs={'pk': self.pk}, request=request)
+    def get_api_url(self, request=None):
+        #NOTE:Using non rf reverse gives me '/api/postings/pk' but if I want to full url i have to use the rf reverse
+        return api_reverse('api-seeds:seed-rud', kwargs={'pk': self.pk}, request=request)

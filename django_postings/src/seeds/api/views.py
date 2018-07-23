@@ -15,6 +15,7 @@ class SeedApiView(generics.ListAPIView, mixins.CreateModelMixin):
         print(self.request.auth)
         print(self.request.user)
         qs = Seed.objects.all()
+        #qs = Seed.objects.filter(user=self.request.user) #NOTE:IF I WANT TO FILTER IT
         query = self.request.GET.get('q')
         if query is not None:
             qs = qs.filter(

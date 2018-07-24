@@ -33,10 +33,13 @@ class Seed(models.Model):
         return api_reverse('api-seeds:seed-rud', kwargs={'pk': self.pk}, request=request)
 
 def seed_pre_save_receiver(sender, instance, *args, **kwargs):
-    print(instance)
+    user_pk         = instance.user.pk
+    user_username   = instance.user.username
+    qs              = instance.__class__.objects.filter(user=user_pk)
+    if not instance.name:
+        instance.name = 'S' + str(qs.count() + 1) + '_' + str(user_username) 
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
-    if not instance.name:
-        instance.name = 'S' + str(instance.__class__.objects.filter(user=instance.user.pk).count() + 1) + '_' + str(instance.user.username) 
+    
 
 pre_save.connect(seed_pre_save_receiver, sender=Seed)

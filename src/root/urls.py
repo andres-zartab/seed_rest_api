@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^api/auth/token/refresh/$', refresh_jwt_token, name='api-refresh-jwt'),
     url(r'^api/postings/', include(('postings.api.urls', 'api-postings'))),
     url(r'^api/seeds/', include(('seeds.api.urls', 'api-seeds'))),
+    url(r'^api/seeds/plants', include(('plants.api.urls', 'api-plants'))),
 ]

@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    
     'postings',
-    'seeds'
+    'seeds',
+    'plants',
 ]
 
 MIDDLEWARE = [

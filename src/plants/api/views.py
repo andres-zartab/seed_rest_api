@@ -23,7 +23,7 @@ class PlantApiView(generics.ListAPIView, mixins.CreateModelMixin):
         return qs
     
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save()
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)#NOTE:This handles the mixin

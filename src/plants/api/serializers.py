@@ -27,6 +27,7 @@ class PlantSerializer(serializers.ModelSerializer):
     def get_url(self, object):
         request = self.context.get('request')
         return object.get_api_url(request=request)
+    
 
     # def validate_gps_lat(self, value):
     #     if value < 4:

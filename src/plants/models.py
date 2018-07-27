@@ -29,20 +29,20 @@ class Plant(models.Model):
 
     @property#NOTE: I do this because permissions.py needs a owner attribute
     def owner(self):
-        return self.user
+        return self.seed.user
 
     def get_api_url(self, request=None):
         #NOTE:Using non rf reverse gives me '/api/postings/pk' but if I want to full url i have to use the rf reverse
-        return api_reverse('api-seeds:seed-rud', kwargs={'pk': self.pk}, request=request)
+        return api_reverse('api-plants:plant-rud', kwargs={'pk': self.pk}, request=request)
 
-def plant_pre_save_receiver(sender, instance, *args, **kwargs):
-    user_pk         = instance.user.pk
-    user_username   = instance.user.username
-    qs              = instance.__class__.objects.filter(user=user_pk)
-    if not instance.name:
-        instance.name = 'S' + str(qs.count() + 1) + '_' + str(user_username) 
-    if not instance.slug:
-        instance.slug = unique_slug_generator(instance)
+# def plant_pre_save_receiver(sender, instance, *args, **kwargs):
+#     user_pk         = instance.user.pk
+#     user_username   = instance.user.username
+#     qs              = instance.__class__.objects.filter(user=user_pk)
+#     if not instance.name:
+#         instance.name = 'S' + str(qs.count() + 1) + '_' + str(user_username) 
+#     if not instance.slug:
+#         instance.slug = unique_slug_generator(instance)
     
 
-pre_save.connect(plant_pre_save_receiver, sender=Plant)
+# pre_save.connect(plant_pre_save_receiver, sender=Plant)

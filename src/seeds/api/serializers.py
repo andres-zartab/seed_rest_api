@@ -6,6 +6,7 @@ from seeds.models import Seed
 #NOTE:serializers convert to JSON and validate date passed
 class SeedSerializer(serializers.ModelSerializer):
     url         = serializers.SerializerMethodField(read_only=True)
+    location    = serializers.SerializerMethodField()
     class Meta:
         model = Seed
         fields = [
@@ -14,8 +15,9 @@ class SeedSerializer(serializers.ModelSerializer):
             'user',
             'name',
             'slug',
-            'gps_lat',
-            'gps_lon',
+            #'gps_lat',
+            #'gps_lon',
+            'location',
             #'picture',
             'active',
             'timestamp',
@@ -24,6 +26,10 @@ class SeedSerializer(serializers.ModelSerializer):
         ]
         #NOTE: The name I give here to the fields is the name that the JSON ends up having
         read_only_fields = ['user']
+
+    def get_location(self, object):
+      d = dict(latitude=object.gps_lat, longitude=object.gps_lon)
+      return d
 
     def get_url(self, object):
         request = self.context.get('request')

@@ -1,9 +1,13 @@
+import json
+
 from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save
 from django.urls import reverse
 
 from rest_framework.reverse import reverse as api_reverse
+
+from jsonfield import JSONField
 
 from postings.models import BlogPost
 
@@ -13,8 +17,7 @@ class Seed(models.Model):
     user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name        = models.CharField(max_length=120, blank=True, null=True)
     slug        = models.SlugField(null=True, blank=True)
-    gps_lat     = models.DecimalField(max_digits=9, decimal_places=6)
-    gps_lon     = models.DecimalField(max_digits=9, decimal_places=6)
+    location    = JSONField()
     #picture     = models.ImageField()
     active      = models.BooleanField()
     timestamp   = models.DateTimeField(auto_now_add=True)

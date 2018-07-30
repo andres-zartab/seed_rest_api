@@ -6,6 +6,7 @@ from seeds.models import Seed
 from .permissions import IsOwnerOrReadOnly
 from .serializers import SeedSerializer
 
+
 class SeedApiView(generics.ListAPIView, mixins.CreateModelMixin):
     lookup_field = 'pk'#NOTE: this is the default forthe rest_framework. This is the pk in the urls.py regexp
     serializer_class = SeedSerializer

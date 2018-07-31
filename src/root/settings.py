@@ -86,7 +86,12 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+GOOGLE_APPLICATION_CREDENTIALS = os.path.abspath('/Users/andres.zartab/Documents/auth/secret_key.json')
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/andres.zartab/Documents/auth/secret_key.json"
 
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'profile_pics420'
+GS_PROJECT_ID = 'numeric-nova-211701'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

@@ -19,7 +19,7 @@ class SeedSerializer(serializers.ModelSerializer):
             'name',
             'slug',
             'location',
-            #'picture',
+            'picture',
             'active',
             'timestamp',
             'updated',

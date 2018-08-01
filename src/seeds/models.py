@@ -18,7 +18,7 @@ class Seed(models.Model):
     name        = models.CharField(max_length=120, blank=True, null=True)
     slug        = models.SlugField(null=True, blank=True)
     location    = JSONField()
-    #picture     = models.ImageField()
+    picture     = models.ImageField(upload_to='pics/', null=True, blank=True)
     active      = models.BooleanField()
     timestamp   = models.DateTimeField(auto_now_add=True)
     updated     = models.DateTimeField(auto_now_add=True)

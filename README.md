@@ -1,4 +1,4 @@
-#REST API for SeedSwapp application
+# REST API for SeedSwapp application
 
 SeedSwapp is an app for exchanging seeds to promote urban gardening.
 

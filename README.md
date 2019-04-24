@@ -1,4 +1,5 @@
-INDICA BACKEND
+#REST API for SeedSwapp application
 
-This is seedSwapp's backend implemented in django.
-RESTFUL API implemented using django rest framework.
+SeedSwapp is an app for exchanging seeds to promote urban gardening.
+
+Written in Python using the Django Rest Framework.
